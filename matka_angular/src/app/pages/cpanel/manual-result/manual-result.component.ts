@@ -221,6 +221,8 @@ export class ManualResultComponent implements OnInit {
 
   saveManualResult(){
 
+    this.manualResultForm.patchValue({gameId:1});
+
     this.validatorError = null;
     Swal.fire({
       title: 'Confirmation',

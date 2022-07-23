@@ -1,3 +1,7 @@
 [submodule "production_fatafat_api"]
 	path = production_fatafat_api
 	url = https://github.com/priyamghosh1/goa_super_api.git
+
+[submodule "production_angular"]
+	path = production_angular
+	url = https://github.com/priyamghosh1/goa_super_production.git

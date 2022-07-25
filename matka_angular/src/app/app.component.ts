@@ -14,7 +14,7 @@ import {CommonService} from './services/common.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy{
-  title = 'kfatafat';
+  title = 'Goa Satta Results';
   active = 1;
   events: string[] = [];
   opened: boolean;

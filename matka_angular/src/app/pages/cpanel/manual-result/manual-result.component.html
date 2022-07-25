@@ -3,6 +3,14 @@
     <mat-tab label="Today">
       <div class="d-flex">
         <div class="">
+          <div class="mt-2">
+            <mat-form-field appearance="fill">
+              <mat-label>Start date</mat-label>
+              <input matInput [matDatepicker]="picker" [max]="StartDateFilter" [(ngModel)]= "StartDateFilter">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
           <form [formGroup]="manualResultForm">
             <div class="d-flex flex-column bd-highlight">
               <div class="p-2 bd-highlight" >
@@ -27,6 +35,7 @@
 <!--                  </div>-->
 
                 </div>
+
                 <!-- <div><button (click)="getGameInputLoad()">view load</button></div> -->
 
                 <div>
@@ -42,8 +51,8 @@
                   <button type="button" class="btn btn-primary mt-2" (click)="saveManualResult()" >Save</button>
                 </div>
               </div>
-                <div class="d-flex flex-row bd-highlight">
-                    <div class="d-flex flex-column" id="triple-flex-column-{{idxSingle}}" *ngFor="let tableData of numberCombinationMatrix; let idxSingle = index">
+                <div *ngIf="numberCombinationMatrix" class="d-flex flex-row bd-highlight">
+                    <div  class="d-flex flex-column" id="triple-flex-column-{{idxSingle}}" *ngFor="let tableData of numberCombinationMatrix; let idxSingle = index">
                       <div class="p-1">
                         <button  class="single-number-button coder-fab" [class.green]="isDisabledSingleHeaderButton"  [disabled]="isDisabledSingleHeaderButton">
                           {{tableData.singleNumber}}

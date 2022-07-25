@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {DrawTime} from '../../../models/DrawTime.model';
 import {ManualResultService} from '../../../services/manual-result.service';
@@ -18,6 +18,7 @@ import { GameService } from 'src/app/services/game.service';
 import { Game } from 'src/app/models/Game.model';
 import { AdminReportService } from 'src/app/services/admin-report.service';
 import { GameInputLoad } from 'src/app/models/GameInputLoad.model';
+import {ModalDirective} from "angular-bootstrap-md";
 // import { Moment } from 'moment';
 // const moment = _moment;
 
@@ -43,6 +44,9 @@ import { GameInputLoad } from 'src/app/models/GameInputLoad.model';
   ]
 })
 export class ManualResultComponent implements OnInit {
+
+  @ViewChild(ModalDirective) modal: ModalDirective;
+
   private BASE_API_URL = environment.BASE_API_URL;
   manualResultForm: FormGroup;
   oldDateResultForm: FormGroup;
@@ -64,6 +68,7 @@ export class ManualResultComponent implements OnInit {
   startDate = new Date(this.thisYear, this.thisMonth, this.thisDay);
 
   StartDateFilter = this.startDate;
+  // StartDateFilter1 = "2022-06-04";
   newDateFilter = this.startDate;
   EndDateFilter = this.startDate;
   pipe = new DatePipe('en-US');
@@ -103,6 +108,7 @@ export class ManualResultComponent implements OnInit {
       single: new FormControl(null),
       triple: new FormControl(null),
       transaction_date: new FormControl(currentSQLDate),
+      gameDate: new FormControl(null),
     });
 
     this.oldDateResultForm = new FormGroup({
@@ -150,20 +156,18 @@ export class ManualResultComponent implements OnInit {
 
     this.fetchDrawTime(this.selectedGame);
 
-    this.numberCombinationMatrix = this.playGameService.getNumberCombinationMatrix();
-        // this.numberCombinationMatrix  = JSON.parse(JSON.stringify(this.copyNumberMatrix));
+    // this.numberCombinationMatrix = this.playGameService.getNumberCombinationMatrix();
     this.playGameService.getNumberCombinationMatrixListener().subscribe((response: SingleNumber[]) => {
         this.numberCombinationMatrix = response;
         this.copyNumberMatrix  = JSON.parse(JSON.stringify(this.numberCombinationMatrix));
       });
+    this.numberCombinationMatrix = this.playGameService.getNumberCombinationMatrix();
 
 
     this.games = this.gameService.getGame();
     this.gameService.getGameListener().subscribe((response: Game[]) => {
       this.games = response;
-      // console.log('ts',this.games);
     });
-    // console.log(this.games);
   }
 
   fetchDrawTime(gameID){
@@ -221,7 +225,11 @@ export class ManualResultComponent implements OnInit {
 
   saveManualResult(){
 
-    this.manualResultForm.patchValue({gameId:1});
+    const startDate = this.pipe.transform(this.StartDateFilter, 'yyyy-MM-dd');
+    this.manualResultForm.patchValue({gameId:1, gameDate: startDate});
+
+    // console.log(this.StartDateFilter);
+    // return;
 
     this.validatorError = null;
     Swal.fire({
@@ -357,13 +365,13 @@ saveOldDateResult(){
         Swal.showLoading();
       }
     });
-    var startDate = this.pipe.transform(this.StartDateFilter, 'yyyy-MM-dd');
+    // var startDate = this.pipe.transform(this.StartDateFilter, 'yyyy-MM-dd');
     // var endDate = this.pipe.transform(this.EndDateFilter, 'yyyy-MM-dd');
-    this.manualResultService.saveOldDateResult(startDate).subscribe((response)=>{
-      if(response.data){
-        Swal.close();
-      }
-    });
+    // this.manualResultService.saveOldDateResult(startDate).subscribe((response)=>{
+    //   if(response.data){
+    //     Swal.close();
+    //   }
+    // });
   }
 
 }

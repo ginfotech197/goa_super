@@ -19,6 +19,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 // import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {BrowserModule} from "@angular/platform-browser";
 
 
 

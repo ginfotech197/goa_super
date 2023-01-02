@@ -80,6 +80,8 @@ import { SuperStockistPanelModule } from './modules/general/super-stockist-panel
 import { MasterStockistModule } from './modules/general/super-stockist-panel/master-stockist/master-stockist.module';
 import { MasterTerminalComponent } from './pages/super-stockist/master-terminal/master-terminal.component';
 import { SuperStockistReportModule } from './modules/general/super-stockist-panel/super-stockist-report/super-stockist-report.module';
+// import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+// import { ResetPasswordModule } from './modules/general/reset-password/reset-password.module';
 // import { SuperStockistReportComponent } from './pages/super-stockist/super-stockist-report/super-stockist-report.component';
 // import { SuperStockistReportModule } from './modules/general/super-stockist-panel/super-stockist-report/super-stockist-report.module';
 // import { MasterTerminalModule } from './modules/general/super-stockist-panel/master-terminal/master-terminal.module';
@@ -114,6 +116,7 @@ import { SuperStockistReportModule } from './modules/general/super-stockist-pane
 @NgModule({
   declarations: [
     AppComponent,
+    // ResetPasswordComponent,
     // SuperStockistReportComponent,
     // MasterTerminalComponent,
     // MasterStockistComponent,
@@ -209,7 +212,8 @@ import { SuperStockistReportModule } from './modules/general/super-stockist-pane
     // TerminalReportModule,
     // AdminReportsModule,
     // MasterTerminalModule
-    MatNativeDateModule
+    MatNativeDateModule,
+    // ResetPasswordModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorInterceptor, multi: true},
               {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -25,6 +25,8 @@ export class AdminReportService {
   customerSaleReportRecords: CPanelCustomerSaleReport[] = [];
   customerSaleReportSubject = new Subject<CPanelCustomerSaleReport[]>();
 
+
+
   constructor(private http: HttpClient, private errorService: ErrorService) {
     // // get all barcode reports
     // this.http.get(this.BASE_API_URL + '/cPanel/barcodeReport').subscribe((response: ServerResponse) => {

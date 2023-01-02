@@ -100,6 +100,11 @@ const routes: Routes = [
       .then(mod => mod.MasterTerminalModule)
   },
   {
+    path: 'resetPassword',
+    loadChildren: () => import('./modules/general/reset-password/reset-password.module')
+      .then(mod => mod.ResetPasswordModule)
+  },
+  {
     path: 'manual',
     loadChildren: () => import('./modules/general/cpanel/manual-result/manual-result.module')
       .then(mod => mod.ManualResultModule)
